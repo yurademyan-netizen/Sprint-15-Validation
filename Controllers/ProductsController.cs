@@ -45,20 +45,29 @@ namespace ProductsValidation.Controllers
             }
 
             return View("NotExists");
-        } 
+        }
         [HttpPost]
-        public IActionResult Edit(Product product)
+        public IActionResult Edit(Product product) //yura ts 1
         {
-            myProducts[myProducts.FindIndex(prod => prod.Id == product.Id)] = product;
+            if (ModelState.IsValid)
+            {
+                myProducts[myProducts.FindIndex(prod => prod.Id == product.Id)] = product;
+                return View("View", product);
+            }
             return View(product);
         }
 
-        
+
         [HttpPost]
-        public IActionResult Create(Product product)
+        public IActionResult Create(Product product) //ts 1
         {
-            myProducts.Add(product);
-            return View("View", product);
+            if (ModelState.IsValid)                 //start vald
+            {
+                myProducts.Add(product);
+                return View("View", product);
+            }
+
+            return View(product);
         }
 
         public IActionResult Create()
