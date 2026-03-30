@@ -95,7 +95,31 @@ namespace ProductsValidation.Controllers
             };
 
             return View(viewModel); 
-        } 
+        }
+
+        [HttpPost]
+        public IActionResult BulkPriceSave(BulkEditViewModel viewModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View("BulkEdit", viewModel);
+            }
+            else
+            {
+                var filtered = myProducts?.Where(p => p.Type == viewModel.Category);
+
+                foreach (var product in filtered)
+                {
+                    var updatedProduct = viewModel.Products?.FirstOrDefault(p => p.Id == product.Id);
+                    if (updatedProduct != null)
+                    {
+                        product.Price = updatedProduct.Price;
+                    }
+                }
+
+                return View("Index", myProducts);
+            }
+        }
 
         public IActionResult Error()
         {
