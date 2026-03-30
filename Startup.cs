@@ -8,7 +8,11 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using FluentValidation.AspNetCore;
+using FluentValidation;
+using ProductsValidation.CustomValidation;
 using ProductsValidation.Services;
+using ProductsValidation.CustomValidation;
 
 namespace ProductsValidation
 {
@@ -24,7 +28,15 @@ namespace ProductsValidation
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            services.AddControllersWithViews()
+                .AddFluentValidation(fv =>
+                {
+                    fv.RegisterValidatorsFromAssemblyContaining<ProductsValidation.CustomValidation.CustomValidation>();
+                    fv.DisableDataAnnotationsValidation = false;
+                });
+
+
+
             services.AddSingleton<Data>();
         }
 

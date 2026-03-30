@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ProductsValidation.Models;
 using ProductsValidation.Services;
+using ProductsValidation.CustomValidation;
 
 namespace ProductsValidation.Controllers
 {
