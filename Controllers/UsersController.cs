@@ -18,10 +18,32 @@ namespace ProductsValidation.Controllers
         {
             users = data.Users;
         }
-        
+
         public IActionResult Index(string id)
         {
             return View("Index", users);
+        }
+
+        [HttpGet]
+        public IActionResult Create(User user)
+        {
+            return View(user);
+        }
+
+        [HttpPost]
+        public IActionResult Create(User user, bool isSaving)
+        {
+            if (ModelState.IsValid)
+            {
+                user.Id = UserIdGeneration.GetIdForUser();
+
+                users.Add(user);
+
+                ViewBag.IsViewMode = true;
+                return View(user);
+            }
+
+            return View(user);
         }
     }
 }
