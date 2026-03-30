@@ -20,10 +20,10 @@ namespace ProductsValidation.Services
 
         public List<User> Users = new List<User>
         {
-            new User() {Id = 0, Name = "UserAdmin", Email = "admin@gmail.com", Role = "admin"},
-            new User() {Id = 0, Name = "Guest", Email = "guest@gmail.com", Role = "guest"},
-            new User() {Id = 0, Name = "User", Email = "user1@gmail.com", Role = "user"},
-            new User() {Id = 0, Name = "User2", Email = "user2@gmail.com", Role = "user"},
+            new User() {Id = UserIdGeneration.GetIdForUser(), Name = "UserAdmin", Email = "admin@gmail.com", Role = "admin"},
+            new User() {Id = UserIdGeneration.GetIdForUser(), Name = "Guest", Email = "guest@gmail.com", Role = "guest"},
+            new User() {Id = UserIdGeneration.GetIdForUser(), Name = "User", Email = "user1@gmail.com", Role = "user"},
+            new User() {Id = UserIdGeneration.GetIdForUser(), Name = "User2", Email = "user2@gmail.com", Role = "user"},
 
         };
     }

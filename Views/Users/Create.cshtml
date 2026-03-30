@@ -1,0 +1,41 @@
+﻿@model ProductsValidation.Models.User
+
+@{
+    ViewData["Title"] = "Create User";
+    bool isViewMode = ViewBag.IsViewMode ?? false;
+}
+
+<h1>@(isViewMode ? "User Details (View Mode)" : "Create New User")</h1>
+
+<form asp-action="Create" method="post">
+    <input type="hidden" asp-for="Id" />
+
+    <div class="form-group mb-3">
+        <label asp-for="Name" class="form-label"></label>
+        <input asp-for="Name" class="form-control" readonly />
+    </div>
+
+    <div class="form-group mb-3">
+        <label asp-for="Email" class="form-label"></label>
+        <input asp-for="Email" class="form-control" readonly />
+    </div>
+
+    <div class="form-group mb-3">
+        <label asp-for="Role" class="form-label"></label>
+        <input asp-for="Role" class="form-control" readonly />
+    </div>
+
+    @if (!isViewMode)
+    {
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <button type="submit" class="btn btn-success">Save</button>
+    }
+    else
+    {
+        <div class="alert alert-info mt-3">
+            User has been saved! Now you are in <strong>view mode</strong>.
+        </div>
+    }
+
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</form>
