@@ -28,6 +28,23 @@ namespace ProductsValidation.Models
             var results = new List<ValidationResult>();
 
             //  Slava (Task 2)
+            if (Description == null)
+            {
+                return results;
+            }
+
+            if (Description.Length < 2)
+            {
+                results.Add(new ValidationResult("Description should be more than 2 characters", new[] { nameof(Description) }));
+            }
+            if (Description == Name)
+            {
+                results.Add(new ValidationResult("Description should not be the same as Name", new[] { nameof(Description) }));
+            }
+            if (!Description.StartsWith(Name, StringComparison.OrdinalIgnoreCase))
+            {
+                results.Add(new ValidationResult("Description should start with Name", new[] { nameof(Description) }));
+            }
 
             return results;
         }
