@@ -41,7 +41,7 @@ namespace ProductsValidation.Models
             {
                 results.Add(new ValidationResult("Description should not be the same as Name", new[] { nameof(Description) }));
             }
-            if (!Description.StartsWith(Name, StringComparison.OrdinalIgnoreCase))
+            if (!Description.StartsWith(Name, StringComparison.InvariantCultureIgnoreCase))
             {
                 results.Add(new ValidationResult("Description should start with Name", new[] { nameof(Description) }));
             }
