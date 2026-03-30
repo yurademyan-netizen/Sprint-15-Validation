@@ -9,6 +9,15 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+
+<div class="mb-3"> 
+    <strong>Bulk Price Edit by Category:</strong><br />
+    <a asp-action="BulkEdit" asp-route-category="Toy" class="btn btn-sm btn-outline-warning">Toys</a> |
+    <a asp-action="BulkEdit" asp-route-category="Technique" class="btn btn-sm btn-outline-warning">Technique</a> |
+    <a asp-action="BulkEdit" asp-route-category="Clothes" class="btn btn-sm btn-outline-warning">Clothes</a> |
+    <a asp-action="BulkEdit" asp-route-category="Transport" class="btn btn-sm btn-outline-warning">Transport</a>
+</div>
+
 <table class="table">
     <thead>
         <tr>

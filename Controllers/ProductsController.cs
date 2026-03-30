@@ -25,17 +25,18 @@ namespace ProductsValidation.Controllers
         {
             return View(myProducts);
         }
-        
-        public IActionResult View(int id)
+
+        public IActionResult Details(int id)
         {
             Product prod = myProducts.Find(prod => prod.Id == id);
             if (prod != null)
             {
-                return View(prod);
+                return View("View", prod);
             }
 
             return View("NotExists");
         }
+
         [HttpGet]
         public IActionResult Edit(int id)
         {
@@ -81,6 +82,20 @@ namespace ProductsValidation.Controllers
             myProducts.Remove( myProducts.Find(product => product.Id == id));
             return View("Index", myProducts);
         }
+
+        [HttpGet] // ts 4 yura
+        public IActionResult BulkEdit(Product.Category category)
+        {
+            var filtered = myProducts.Where(p => p.Type == category).ToList(); 
+
+            var viewModel = new BulkEditViewModel 
+            {
+                Category = category,
+                Products = filtered
+            };
+
+            return View(viewModel); 
+        } 
 
         public IActionResult Error()
         {

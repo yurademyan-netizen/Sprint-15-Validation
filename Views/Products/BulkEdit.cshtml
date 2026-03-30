@@ -1,0 +1,46 @@
+﻿@model ProductsValidation.Models.BulkEditViewModel
+
+@{
+    ViewData["Title"] = "Bulk Edit";
+}
+
+<h2>Bulk Edit Prices: @Model.Category</h2>
+
+<form asp-action="BulkPriceSave" method="post">
+    
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.Products.Count; i++)
+            {
+                <tr>
+                    <td>
+                        <input asp-for="Products[i].Id" class="form-control" readonly /> 
+                    </td>
+                    <td>
+                        <input asp-for="Products[i].Name" class="form-control" readonly /> 
+                    </td>
+                    <td>
+                        <input asp-for="Products[i].Price" class="form-control" /> 
+                        <span asp-validation-for="Products[i].Price" class="text-danger"></span>
+                    </td>
+                    <input type="hidden" asp-for="Products[i].Type" />
+                </tr>
+            }
+        </tbody>
+    </table>
+    <button type="submit" class="btn btn-success">Save All</button> 
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+     
+}
